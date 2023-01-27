@@ -15,11 +15,14 @@ public class App {
   final BufferedReader inputReader;
   final PrintStream out;
 
+  final AbstractShipFactory<Character> shipFactory;
+
   public App(Board<Character> theBoard, Reader inputSource, PrintStream out) {
     this.theBoard = theBoard;
     this.view = new BoardTextView(theBoard);
     this.inputReader = new BufferedReader(inputSource);
     this.out = out;
+    this.shipFactory = new V1ShipFactory();
   }
 
   /**
@@ -34,8 +37,8 @@ public class App {
   public void doOnePlacement() throws IOException {
     // read a Placement (prompt: "Where would you like to put your ship?")
     Placement p = readPlacement("Where would you like to put your ship?");
-    // Create a basic ship based on the location in that Placement
-    RectangleShip<Character> b = new RectangleShip<Character>(p.getWhere(), 's', '*');
+    // Create a destroyer based on the location in that Placement
+    Ship<Character> b = shipFactory.makeDestroyer(p);
     // Add that ship to the board
     theBoard.tryAddShip(b);
     // Print out the board (to out, not to System.out)
@@ -43,7 +46,7 @@ public class App {
   }
 
   public static void main(String[] args) throws IOException {
-    Board myBoard = new BattleShipBoard<Character>(10, 20);
+    Board<Character> myBoard = new BattleShipBoard<Character>(10, 20);
     App myApp = new App(myBoard, new InputStreamReader(System.in), System.out);
     myApp.doOnePlacement();
   }
