@@ -1,6 +1,7 @@
 package edu.duke.rx50.battleship;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class BasicShip<T> implements Ship<T> {
   // private final Coordinate myLocation;
@@ -17,31 +18,41 @@ public abstract class BasicShip<T> implements Ship<T> {
 
   @Override
   public boolean occupiesCoordinates(Coordinate where) {
-    return (myPieces.get(where)!=null);
+    return (myPieces.get(where) != null);
   }
 
   @Override
   public boolean isSunk() {
-    // TODO Auto-generated method stub
-    return false;
+    for (Map.Entry<Coordinate, Boolean> set : myPieces.entrySet()) {
+      if (!set.getValue()) {
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override
   public void recordHitAt(Coordinate where) {
-    // TODO Auto-generated method stub
-
+    checkCoordinateInThisShip(where);
+    myPieces.put(where, true);
   }
 
   @Override
   public boolean wasHitAt(Coordinate where) {
-    // TODO Auto-generated method stub
-    return false;
+    checkCoordinateInThisShip(where);
+    return myPieces.get(where);
   }
 
   @Override
   public T getDisplayInfoAt(Coordinate where) {
-    // TODO this is not right
-    return myDisplayInfo.getInfo(where, false);
+    checkCoordinateInThisShip(where);
+    return myDisplayInfo.getInfo(where, wasHitAt(where));
+  }
+
+  protected void checkCoordinateInThisShip(Coordinate c) {
+    if (!occupiesCoordinates(c)) {
+      throw new IllegalArgumentException("Coordinate is not in the ship!");
+    }
   }
 
 }
