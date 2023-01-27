@@ -59,10 +59,10 @@ public class BoardTextView {
     ans.append(" ");
     for (int column = 0; column < toDisplay.getWidth(); ++column) {
       // question: cast here?? other method???
-      if (((BattleShipBoard) toDisplay).whatIsAt(new Coordinate(row, column)) == null) {
+      if (toDisplay.whatIsAt(new Coordinate(row, column)) == null) {
         ans.append(" ");
       } else {
-        ans.append(((BattleShipBoard) toDisplay).whatIsAt(new Coordinate(row, column)));
+        ans.append(toDisplay.whatIsAt(new Coordinate(row, column)));
       }
       if (column != toDisplay.getWidth() - 1) {
         ans.append("|");

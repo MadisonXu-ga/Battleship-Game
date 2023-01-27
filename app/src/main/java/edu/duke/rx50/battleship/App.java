@@ -31,20 +31,19 @@ public class App {
     return new Placement(s);
   }
 
-  public void doOnePlacement() throws IOException{
+  public void doOnePlacement() throws IOException {
     // read a Placement (prompt: "Where would you like to put your ship?")
     Placement p = readPlacement("Where would you like to put your ship?");
     // Create a basic ship based on the location in that Placement
-    BasicShip b = new BasicShip(p.getWhere());
-    // ??????????????????????????????
+    RectangleShip<Character> b = new RectangleShip<Character>(p.getWhere(), 's', '*');
     // Add that ship to the board
-    ((BattleShipBoard)theBoard).tryAddShip(b);
+    theBoard.tryAddShip(b);
     // Print out the board (to out, not to System.out)
     out.println(view.displayMyOwnBoard());
   }
 
-  public static void main(String[] args) throws IOException{
-    BattleShipBoard myBoard = new BattleShipBoard<Character>(10, 20);
+  public static void main(String[] args) throws IOException {
+    Board myBoard = new BattleShipBoard<Character>(10, 20);
     App myApp = new App(myBoard, new InputStreamReader(System.in), System.out);
     myApp.doOnePlacement();
   }
