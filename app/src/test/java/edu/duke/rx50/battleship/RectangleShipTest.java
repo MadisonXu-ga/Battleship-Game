@@ -57,4 +57,13 @@ public class RectangleShipTest {
     assertEquals(r.getDisplayInfoAt(new Coordinate(2, 2)), '*');
     assertThrows(IllegalArgumentException.class, () -> r.getDisplayInfoAt(new Coordinate(3, 3)));
   }
+
+  @Test
+  public void test_getCoordinates() {
+    RectangleShip<Character> r = new RectangleShip<Character>("submarine", new Coordinate(1, 2), 1, 3, 's', '*');
+    Iterable<Coordinate> s = r.getCoordinates();
+    for(Coordinate c: s){
+      assertTrue(r.occupiesCoordinates(c));
+    }
+  }
 }

@@ -25,7 +25,7 @@ public class Coordinate {
       throw new IllegalArgumentException("Row is not legal!");
     }
     if (descr.charAt(1) < '0' || descr.charAt(1) > '9') {
-      throw new IllegalArgumentException("Height is not legal!");
+      throw new IllegalArgumentException("Column is not legal!");
     }
     row = descr.toUpperCase().charAt(0) - 'A';
     column = descr.charAt(1) - '0';

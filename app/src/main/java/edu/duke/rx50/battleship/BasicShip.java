@@ -55,4 +55,8 @@ public abstract class BasicShip<T> implements Ship<T> {
     }
   }
 
+  @Override
+  public Iterable<Coordinate> getCoordinates(){
+    return myPieces.keySet();
+  }
 }
