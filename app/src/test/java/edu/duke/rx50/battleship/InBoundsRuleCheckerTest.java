@@ -8,8 +8,8 @@ public class InBoundsRuleCheckerTest {
   @Test
   public void test_checkMyRule() {
     V1ShipFactory v = new V1ShipFactory();
-    Board<Character> b = new BattleShipBoard(8, 7, new InBoundsRuleChecker(null));
-    PlacementRuleChecker<Character> checker = new InBoundsRuleChecker(null);
+    Board<Character> b = new BattleShipBoard<Character>(8, 7, new InBoundsRuleChecker<Character>(null));
+    PlacementRuleChecker<Character> checker = new InBoundsRuleChecker<Character>(null);
     // valid ship
     Ship<Character> s1 = v.makeSubmarine(new Placement("A0H"));
     Ship<Character> s2 = v.makeBattleship(new Placement("B0H"));
@@ -21,10 +21,12 @@ public class InBoundsRuleCheckerTest {
     Ship<Character> s4 = v.makeSubmarine(new Placement("Z0H"));
     Ship<Character> s5 = v.makeSubmarine(new Placement("A0H"));
     Ship<Character> s6 = v.makeSubmarine(new Placement("A8H"));
+    Ship<Character> s7 = v.makeSubmarine(new Placement("A9H"));
     // assertFalse(checker.checkPlacement(s3, b));
     assertFalse(checker.checkPlacement(s4, b));
     // assertFalse(checker.checkPlacement(s5, b));
     assertFalse(checker.checkPlacement(s6, b));
+    assertFalse(checker.checkPlacement(s7, b));
   }
 
 }
