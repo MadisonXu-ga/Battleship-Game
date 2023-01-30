@@ -26,10 +26,23 @@ public class BattleShipBoardTest {
     Character[][] expected = new Character[10][20];
     checkWhatIsAtBoard(b, expected);
 
+    // add ship succeed
     Ship<Character> s = new RectangleShip<Character>(new Coordinate(5, 8), 's', '*');
-    b.tryAddShip(s);
+    assertTrue(b.tryAddShip(s));
     expected[5][8] = 's';
     checkWhatIsAtBoard(b, expected);
+
+    // add ship failed
+    V1ShipFactory v = new V1ShipFactory();
+    // overlap
+    Ship<Character> sf = v.makeSubmarine(new Placement("F8H"));
+    assertFalse(b.tryAddShip(sf));
+    // out of bound
+    Ship<Character> sf2 = v.makeSubmarine(new Placement("Z8H"));
+    assertFalse(b.tryAddShip(sf2));
+
+    Ship<Character> sf3 = v.makeBattleship(new Placement("A9H"));
+    assertFalse(b.tryAddShip(sf3));
   }
 
   private <T> void checkWhatIsAtBoard(BattleShipBoard<T> b, T[][] expected) {
