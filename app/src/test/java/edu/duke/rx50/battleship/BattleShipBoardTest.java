@@ -28,7 +28,7 @@ public class BattleShipBoardTest {
 
     // add ship succeed
     Ship<Character> s = new RectangleShip<Character>(new Coordinate(5, 8), 's', '*');
-    assertTrue(b.tryAddShip(s));
+    assertEquals(b.tryAddShip(s), null);
     expected[5][8] = 's';
     checkWhatIsAtBoard(b, expected);
 
@@ -36,13 +36,13 @@ public class BattleShipBoardTest {
     V1ShipFactory v = new V1ShipFactory();
     // overlap
     Ship<Character> sf = v.makeSubmarine(new Placement("F8H"));
-    assertFalse(b.tryAddShip(sf));
+    assertEquals(b.tryAddShip(sf), "That placement is invalid: the ship overlaps another ship.");
     // out of bound
     Ship<Character> sf2 = v.makeSubmarine(new Placement("Z8H"));
-    assertFalse(b.tryAddShip(sf2));
+    assertEquals(b.tryAddShip(sf2), "That placement is invalid: the ship goes off the bottom of the board.");
 
     Ship<Character> sf3 = v.makeBattleship(new Placement("A9H"));
-    assertFalse(b.tryAddShip(sf3));
+    assertEquals(b.tryAddShip(sf3),"That placement is invalid: the ship goes off the right of the board.");
   }
 
   private <T> void checkWhatIsAtBoard(BattleShipBoard<T> b, T[][] expected) {

@@ -16,10 +16,6 @@ public class App {
     this.player2 = player2;
   }
 
-  public void doOnePlacement() throws IOException {
-    player1.doOnePlacement();
-  }
-
   public void doPlacementPhase() throws IOException {
     player1.doPlacementPhase();
     player2.doPlacementPhase();
@@ -35,7 +31,6 @@ public class App {
     TextPlayer player2 = new TextPlayer("B", b2, input, System.out, factory);
 
     App App = new App(player1, player2);
-    App.doOnePlacement();
     App.doPlacementPhase();
   }
 }

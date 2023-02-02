@@ -42,12 +42,13 @@ public class BattleShipBoard<T> implements Board<T> {
     this(w, h, new InBoundsRuleChecker<T>(new NoCollisionRuleChecker<T>(null)));
   }
 
-  public boolean tryAddShip(Ship<T> toAdd) {
-    if (placementChecker.checkPlacement(toAdd, this)) {
+  public String tryAddShip(Ship<T> toAdd) {
+    String error = placementChecker.checkPlacement(toAdd, this);
+    if (error==null) {
       myShips.add(toAdd);
-      return true;
+      return null;
     }
-    return false;
+    return error;
   }
 
   public T whatIsAt(Coordinate where) {

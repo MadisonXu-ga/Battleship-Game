@@ -13,8 +13,8 @@ public class InBoundsRuleCheckerTest {
     // valid ship
     Ship<Character> s1 = v.makeSubmarine(new Placement("A0H"));
     Ship<Character> s2 = v.makeBattleship(new Placement("B0H"));
-    assertTrue(checker.checkPlacement(s1, b));
-    assertTrue(checker.checkPlacement(s2, b));
+    assertEquals(checker.checkPlacement(s1, b), null);
+    assertEquals(checker.checkPlacement(s2, b), null);
 
     // invalid ship
     Ship<Character> s3 = v.makeSubmarine(new Placement("A0H"));
@@ -23,10 +23,11 @@ public class InBoundsRuleCheckerTest {
     Ship<Character> s6 = v.makeSubmarine(new Placement("A8H"));
     Ship<Character> s7 = v.makeSubmarine(new Placement("A9H"));
     // assertFalse(checker.checkPlacement(s3, b));
-    assertFalse(checker.checkPlacement(s4, b));
+    assertEquals(checker.checkPlacement(s4, b),
+        "That placement is invalid: the ship goes off the bottom of the board.");
     // assertFalse(checker.checkPlacement(s5, b));
-    assertFalse(checker.checkPlacement(s6, b));
-    assertFalse(checker.checkPlacement(s7, b));
+    assertEquals(checker.checkPlacement(s6, b), "That placement is invalid: the ship goes off the right of the board.");
+    assertEquals(checker.checkPlacement(s7, b), "That placement is invalid: the ship goes off the right of the board.");
   }
 
 }

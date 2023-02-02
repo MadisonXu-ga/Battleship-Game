@@ -129,9 +129,9 @@ A s|s| | | | | | | |  A
 B s|s| | | | | | | |  B
 C d|d|d| | | | | | |  C
 D d|d|d| | | | | | |  D
-E  | | |d| | | | | |  E
-F  | | |d| | | | | |  F
-G  | | |d| | | | | |  G
+E d|d|d| | | | | | |  E
+F  | | | | | | | | |  F
+G  | | | | | | | | |  G
 H  | | | | | | | | |  H
 I  | | | | | | | | |  I
 J  | | | | | | | | |  J
@@ -153,16 +153,16 @@ A s|s| | | | | | | |  A
 B s|s| | | | | | | |  B
 C d|d|d| | | | | | |  C
 D d|d|d| | | | | | |  D
-E  | | |d| | | | | |  E
-F  | | |d| | | | | |  F
-G  | | |d| | | | | |  G
+E d|d|d| | | | | | |  E
+F b|b|b|b| | | | | |  F
+G  | | | | | | | | |  G
 H  | | | | | | | | |  H
 I  | | | | | | | | |  I
 J  | | | | | | | | |  J
-K  | | | | | |b| | |  K
-L  | | | | | |b| | |  L
-M  | | | | | |b| | |  M
-N  | | | | | |b| | |  N
+K  | | | | | | | | |  K
+L  | | | | | | | | |  L
+M  | | | | | | | | |  M
+N  | | | | | | | | |  N
 O  | | | | | | | | |  O
 P  | | | | | | | | |  P
 Q  | | | | | | | | |  Q
@@ -177,16 +177,16 @@ A s|s| | | | | | | |  A
 B s|s| | | | | | | |  B
 C d|d|d| | | | | | |  C
 D d|d|d| | | | | | |  D
-E  | | |d| | | | | |  E
-F  | | |d| | | | | |  F
-G  | | |d| | | | | |  G
+E d|d|d| | | | | | |  E
+F b|b|b|b| | | | | |  F
+G b|b|b|b| | | | | |  G
 H  | | | | | | | | |  H
 I  | | | | | | | | |  I
-J  | | |b|b|b|b| | |  J
-K  | | | | | |b| | |  K
-L  | | | | | |b| | |  L
-M  | | | | | |b| | |  M
-N  | | | | | |b| | |  N
+J  | | | | | | | | |  J
+K  | | | | | | | | |  K
+L  | | | | | | | | |  L
+M  | | | | | | | | |  M
+N  | | | | | | | | |  N
 O  | | | | | | | | |  O
 P  | | | | | | | | |  P
 Q  | | | | | | | | |  Q
@@ -200,17 +200,17 @@ Player A where do you want to place a Battleship?
 A s|s| | | | | | | |  A
 B s|s| | | | | | | |  B
 C d|d|d| | | | | | |  C
-D d|d|d| | | | | |b|  D
-E  | | |d| | | | |b|  E
-F  | | |d| | | | |b|  F
-G  | | |d| | | | |b|  G
-H  | | | | | | | | |  H
+D d|d|d| | | | | | |  D
+E d|d|d| | | | | | |  E
+F b|b|b|b| | | | | |  F
+G b|b|b|b| | | | | |  G
+H b|b|b|b| | | | | |  H
 I  | | | | | | | | |  I
-J  | | |b|b|b|b| | |  J
-K  | | | | | |b| | |  K
-L  | | | | | |b| | |  L
-M  | | | | | |b| | |  M
-N  | | | | | |b| | |  N
+J  | | | | | | | | |  J
+K  | | | | | | | | |  K
+L  | | | | | | | | |  L
+M  | | | | | | | | |  M
+N  | | | | | | | | |  N
 O  | | | | | | | | |  O
 P  | | | | | | | | |  P
 Q  | | | | | | | | |  Q
@@ -224,47 +224,47 @@ Player A where do you want to place a Carrier?
 A s|s| | | | | | | |  A
 B s|s| | | | | | | |  B
 C d|d|d| | | | | | |  C
-D d|d|d| | | | | |b|  D
-E  | | |d| | | | |b|  E
-F  | | |d| | | | |b|  F
-G  | | |d| | | | |b|  G
-H  | | | | | | | | |  H
-I  | | | | | | | | |  I
-J  | | |b|b|b|b| | |  J
-K  | | | | | |b| | |  K
-L  | | | | | |b| | |  L
-M  | | | | | |b| | |  M
-N  | | | | | |b| | |  N
-O  | |c| | | | | | |  O
-P  | |c| | | | | | |  P
-Q  | |c| | | | | | |  Q
-R  | |c| | | | | | |  R
-S  | |c| | | | | | |  S
-T  | |c| | | | | | |  T
+D d|d|d| | | | | | |  D
+E d|d|d| | | | | | |  E
+F b|b|b|b| | | | | |  F
+G b|b|b|b| | | | | |  G
+H b|b|b|b| | | | | |  H
+I c|c|c|c|c|c| | | |  I
+J  | | | | | | | | |  J
+K  | | | | | | | | |  K
+L  | | | | | | | | |  L
+M  | | | | | | | | |  M
+N  | | | | | | | | |  N
+O  | | | | | | | | |  O
+P  | | | | | | | | |  P
+Q  | | | | | | | | |  Q
+R  | | | | | | | | |  R
+S  | | | | | | | | |  S
+T  | | | | | | | | |  T
   0|1|2|3|4|5|6|7|8|9
 
 Player A where do you want to place a Carrier?
   0|1|2|3|4|5|6|7|8|9
-A s|s| |c|c|c|c|c|c|  A
+A s|s| | | | | | | |  A
 B s|s| | | | | | | |  B
 C d|d|d| | | | | | |  C
-D d|d|d| | | | | |b|  D
-E  | | |d| | | | |b|  E
-F  | | |d| | | | |b|  F
-G  | | |d| | | | |b|  G
-H  | | | | | | | | |  H
-I  | | | | | | | | |  I
-J  | | |b|b|b|b| | |  J
-K  | | | | | |b| | |  K
-L  | | | | | |b| | |  L
-M  | | | | | |b| | |  M
-N  | | | | | |b| | |  N
-O  | |c| | | | | | |  O
-P  | |c| | | | | | |  P
-Q  | |c| | | | | | |  Q
-R  | |c| | | | | | |  R
-S  | |c| | | | | | |  S
-T  | |c| | | | | | |  T
+D d|d|d| | | | | | |  D
+E d|d|d| | | | | | |  E
+F b|b|b|b| | | | | |  F
+G b|b|b|b| | | | | |  G
+H b|b|b|b| | | | | |  H
+I c|c|c|c|c|c| | | |  I
+J c|c|c|c|c|c| | | |  J
+K  | | | | | | | | |  K
+L  | | | | | | | | |  L
+M  | | | | | | | | |  M
+N  | | | | | | | | |  N
+O  | | | | | | | | |  O
+P  | | | | | | | | |  P
+Q  | | | | | | | | |  Q
+R  | | | | | | | | |  R
+S  | | | | | | | | |  S
+T  | | | | | | | | |  T
   0|1|2|3|4|5|6|7|8|9
 
   0|1|2|3|4|5|6|7|8|9
@@ -298,8 +298,8 @@ Player B: you are going to place the following ships (which are all rectangular)
 2 "Carriers" that are 1x6
 Player B where do you want to place a Submarine?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B  | | | | | | | | |  B
+A s| | | | | | | | |  A
+B s| | | | | | | | |  B
 C  | | | | | | | | |  C
 D  | | | | | | | | |  D
 E  | | | | | | | | |  E
@@ -346,9 +346,9 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Destroyer?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
+A s|s|d| | | | | | |  A
+B s|s|d| | | | | | |  B
+C  | |d| | | | | | |  C
 D  | | | | | | | | |  D
 E  | | | | | | | | |  E
 F  | | | | | | | | |  F
@@ -370,10 +370,10 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Destroyer?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
+A s|s|d|d| | | | | |  A
+B s|s|d|d| | | | | |  B
+C  | |d|d| | | | | |  C
+D  | | | | | | | | |  D
 E  | | | | | | | | |  E
 F  | | | | | | | | |  F
 G  | | | | | | | | |  G
@@ -394,11 +394,11 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Destroyer?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
-E d|d|d| | | | | | |  E
+A s|s|d|d|d| | | | |  A
+B s|s|d|d|d| | | | |  B
+C  | |d|d|d| | | | |  C
+D  | | | | | | | | |  D
+E  | | | | | | | | |  E
 F  | | | | | | | | |  F
 G  | | | | | | | | |  G
 H  | | | | | | | | |  H
@@ -418,12 +418,12 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Battleship?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
-E d|d|d| | | | | | |  E
-F b|b|b|b| | | | | |  F
+A s|s|d|d|d|b| | | |  A
+B s|s|d|d|d|b| | | |  B
+C  | |d|d|d|b| | | |  C
+D  | | | | |b| | | |  D
+E  | | | | | | | | |  E
+F  | | | | | | | | |  F
 G  | | | | | | | | |  G
 H  | | | | | | | | |  H
 I  | | | | | | | | |  I
@@ -442,13 +442,13 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Battleship?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
-E d|d|d| | | | | | |  E
-F b|b|b|b| | | | | |  F
-G b|b|b|b| | | | | |  G
+A s|s|d|d|d|b|b| | |  A
+B s|s|d|d|d|b|b| | |  B
+C  | |d|d|d|b|b| | |  C
+D  | | | | |b|b| | |  D
+E  | | | | | | | | |  E
+F  | | | | | | | | |  F
+G  | | | | | | | | |  G
 H  | | | | | | | | |  H
 I  | | | | | | | | |  I
 J  | | | | | | | | |  J
@@ -466,14 +466,14 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Battleship?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
-E d|d|d| | | | | | |  E
-F b|b|b|b| | | | | |  F
-G b|b|b|b| | | | | |  G
-H b|b|b|b| | | | | |  H
+A s|s|d|d|d|b|b|b| |  A
+B s|s|d|d|d|b|b|b| |  B
+C  | |d|d|d|b|b|b| |  C
+D  | | | | |b|b|b| |  D
+E  | | | | | | | | |  E
+F  | | | | | | | | |  F
+G  | | | | | | | | |  G
+H  | | | | | | | | |  H
 I  | | | | | | | | |  I
 J  | | | | | | | | |  J
 K  | | | | | | | | |  K
@@ -490,15 +490,15 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Carrier?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
-E d|d|d| | | | | | |  E
-F b|b|b|b| | | | | |  F
-G b|b|b|b| | | | | |  G
-H b|b|b|b| | | | | |  H
-I  |c|c|c|c|c|c| | |  I
+A s|s|d|d|d|b|b|b|c|  A
+B s|s|d|d|d|b|b|b|c|  B
+C  | |d|d|d|b|b|b|c|  C
+D  | | | | |b|b|b|c|  D
+E  | | | | | | | |c|  E
+F  | | | | | | | |c|  F
+G  | | | | | | | | |  G
+H  | | | | | | | | |  H
+I  | | | | | | | | |  I
 J  | | | | | | | | |  J
 K  | | | | | | | | |  K
 L  | | | | | | | | |  L
@@ -514,21 +514,21 @@ T  | | | | | | | | |  T
 
 Player B where do you want to place a Carrier?
   0|1|2|3|4|5|6|7|8|9
-A s|s| | | | | | | |  A
-B s|s| | | | | | | |  B
-C d|d|d| | | | | | |  C
-D d|d|d| | | | | | |  D
-E d|d|d| | | | | | |  E
-F b|b|b|b| | | | | |  F
-G b|b|b|b| | | | | |  G
-H b|b|b|b| | | | | |  H
-I  |c|c|c|c|c|c| | |  I
-J  | |c| | | | | | |  J
-K  | |c| | | | | | |  K
-L  | |c| | | | | | |  L
-M  | |c| | | | | | |  M
-N  | |c| | | | | | |  N
-O  | |c| | | | | | |  O
+A s|s|d|d|d|b|b|b|c|c A
+B s|s|d|d|d|b|b|b|c|c B
+C  | |d|d|d|b|b|b|c|c C
+D  | | | | |b|b|b|c|c D
+E  | | | | | | | |c|c E
+F  | | | | | | | |c|c F
+G  | | | | | | | | |  G
+H  | | | | | | | | |  H
+I  | | | | | | | | |  I
+J  | | | | | | | | |  J
+K  | | | | | | | | |  K
+L  | | | | | | | | |  L
+M  | | | | | | | | |  M
+N  | | | | | | | | |  N
+O  | | | | | | | | |  O
 P  | | | | | | | | |  P
 Q  | | | | | | | | |  Q
 R  | | | | | | | | |  R
