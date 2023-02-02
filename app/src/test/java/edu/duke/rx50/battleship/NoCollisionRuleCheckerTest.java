@@ -32,7 +32,6 @@ public class NoCollisionRuleCheckerTest {
     assertTrue(checker.checkPlacement(b1, b));
     assertTrue(b.tryAddShip(b1));
 
-    System.out.println(b.getWidth());
     Ship<Character> s1 = v.makeSubmarine(new Placement("A3H"));
     assertFalse(checker.checkPlacement(s1, b));
 

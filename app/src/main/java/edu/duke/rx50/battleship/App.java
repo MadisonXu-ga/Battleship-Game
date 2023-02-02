@@ -6,48 +6,36 @@ package edu.duke.rx50.battleship;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
-import java.io.Reader;
 
 public class App {
-  final Board<Character> theBoard;
-  final BoardTextView view;
-  final BufferedReader inputReader;
-  final PrintStream out;
+  TextPlayer player1;
+  TextPlayer player2;
 
-  final AbstractShipFactory<Character> shipFactory;
-
-  public App(Board<Character> theBoard, Reader inputSource, PrintStream out) {
-    this.theBoard = theBoard;
-    this.view = new BoardTextView(theBoard);
-    this.inputReader = new BufferedReader(inputSource);
-    this.out = out;
-    this.shipFactory = new V1ShipFactory();
-  }
-
-  /**
-   * read placement and deal with it
-   */
-  public Placement readPlacement(String prompt) throws IOException {
-    out.println(prompt);
-    String s = inputReader.readLine();
-    return new Placement(s);
+  public App(TextPlayer player1, TextPlayer player2) {
+    this.player1 = player1;
+    this.player2 = player2;
   }
 
   public void doOnePlacement() throws IOException {
-    // read a Placement (prompt: "Where would you like to put your ship?")
-    Placement p = readPlacement("Where would you like to put your ship?");
-    // Create a destroyer based on the location in that Placement
-    Ship<Character> b = shipFactory.makeDestroyer(p);
-    // Add that ship to the board
-    theBoard.tryAddShip(b);
-    // Print out the board (to out, not to System.out)
-    out.println(view.displayMyOwnBoard());
+    player1.doOnePlacement();
+  }
+
+  public void doPlacementPhase() throws IOException {
+    player1.doPlacementPhase();
+    player2.doPlacementPhase();
   }
 
   public static void main(String[] args) throws IOException {
-    Board<Character> myBoard = new BattleShipBoard<Character>(10, 20);
-    App myApp = new App(myBoard, new InputStreamReader(System.in), System.out);
-    myApp.doOnePlacement();
+    Board<Character> b1 = new BattleShipBoard<Character>(10, 20);
+    Board<Character> b2 = new BattleShipBoard<Character>(10, 20);
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+    V1ShipFactory factory = new V1ShipFactory();
+    TextPlayer player1 = new TextPlayer("A", b1, input, System.out, factory);
+    TextPlayer player2 = new TextPlayer("B", b2, input, System.out, factory);
+
+    App App = new App(player1, player2);
+    App.doOnePlacement();
+    App.doPlacementPhase();
   }
 }

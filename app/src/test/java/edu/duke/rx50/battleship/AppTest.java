@@ -12,38 +12,13 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.ResourceAccessMode;
 import org.junit.jupiter.api.parallel.ResourceLock;
 import org.junit.jupiter.api.parallel.Resources;
 
 class AppTest {
-  @Test
-  void test_read_placement() throws IOException {
-    // a string reader from whcih we can read three placements
-    StringReader sr = new StringReader("B2V\nC8H\na4v\n");
-    // ps is a PrintStream (looks like System.out) which writes
-    // its data into bytes instead of to the screen.
-    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-    PrintStream ps = new PrintStream(bytes, true);
-    // app reads from sr and writes to ps
-    Board<Character> b = new BattleShipBoard<Character>(10, 20);
-    App app = new App(b, sr, ps);
-
-    String prompt = "Please enter a location for a ship:";
-    Placement[] expected = new Placement[3];
-    expected[0] = new Placement(new Coordinate(1, 2), 'V');
-    expected[1] = new Placement(new Coordinate(2, 8), 'H');
-    expected[2] = new Placement(new Coordinate(0, 4), 'V');
-
-    for (int i = 0; i < expected.length; i++) {
-      Placement p = app.readPlacement(prompt);
-      assertEquals(p, expected[i]); // did we get the right Placement back
-      assertEquals(prompt + "\n", bytes.toString()); // should have printed prompt and newline
-      bytes.reset(); // clear out bytes for next time around
-    }
-  }
-
   // @ResourceLock to ensure proper serialization of the tests.
   @Test
   @ResourceLock(value = Resources.SYSTEM_OUT, mode = ResourceAccessMode.READ_WRITE)
@@ -52,6 +27,7 @@ class AppTest {
     PrintStream out = new PrintStream(bytes, true);
     // get an InputStream for our input.txt file:
     InputStream input = getClass().getClassLoader().getResourceAsStream("input.txt");
+    
     assertNotNull(input);
     // ask the ClassLaoder to find us a resource named "input.txt" and give us back
     // an InputStream for it.
