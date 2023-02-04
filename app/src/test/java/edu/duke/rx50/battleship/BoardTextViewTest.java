@@ -105,10 +105,10 @@ public class BoardTextViewTest {
   @Test
   public void test_displayMyBoardWithEnemyNextToIt(){
     String expectedView =
-      "     Your ocean" + "                " + "Player B's ocean\n" +
+      "     Your ocean" + "               "+"Player B's ocean\n" +
       "  0|1|2|3  " + "                " + "  0|1|2|3\n"+
       "A  | | |d A" + "                " + "A X| | |  A\n" +
-      "B *|s| |d B" + "                " + "B s| | |  B\n" +
+     "B *|s| |d B" + "                " + "B s| | |  B\n" +
       "C  | | |d C" + "                " + "C  | | |  C\n" +
       "  0|1|2|3  " + "                " + "  0|1|2|3\n";
 

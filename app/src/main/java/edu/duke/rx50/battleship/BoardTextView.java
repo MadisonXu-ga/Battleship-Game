@@ -55,13 +55,13 @@ public class BoardTextView {
 
     StringBuilder ans = new StringBuilder("");
     int spaceLength = 16; // ??????
-    int leftHeader = 5;
+    int headerSpace = 5;
 
     for (int i = 0; i < myLines.length; ++i) {
       if (i == 0) {
-        ans.append(" ".repeat(leftHeader));
+        ans.append(" ".repeat(headerSpace));
         ans.append(myHeader);
-        ans.append(" ".repeat(spaceLength));
+        ans.append(" ".repeat(myLines[i].length()+spaceLength-myHeader.length()));
         ans.append(enemyHeader);
         ans.append("\n");
       }

@@ -21,6 +21,21 @@ public class App {
     player2.doPlacementPhase();
   }
 
+  public void doAttackingPhase() throws IOException{
+    while (true) {
+      player1.playOneTurn(player2.theBoard, player2.view, player2.name);
+      if (player2.checkLost()) {
+        System.out.println(player1.name + " has won! " + player2.name + " has lost!");
+        break;
+      }
+      player2.playOneTurn(player1.theBoard, player1.view, player1.name);
+      if (player1.checkLost()) {
+        System.out.println(player2.name + " has won! " + player1.name + " has lost!");
+        break;
+      }
+    }
+  }
+
   public static void main(String[] args) throws IOException {
     Board<Character> b1 = new BattleShipBoard<Character>(10, 20, 'X');
     Board<Character> b2 = new BattleShipBoard<Character>(10, 20, 'X');
@@ -32,5 +47,6 @@ public class App {
 
     App App = new App(player1, player2);
     App.doPlacementPhase();
+    App.doAttackingPhase();
   }
 }

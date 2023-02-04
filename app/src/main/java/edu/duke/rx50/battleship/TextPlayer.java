@@ -60,14 +60,29 @@ public class TextPlayer {
     return new Placement(s);
   }
 
-  public void doOnePlacement(String shipName, Function<Placement, Ship<Character>> createFn) throws IOException {
-    Placement p = readPlacement("Player " + name + " where do you want to place a " + shipName + "?");
-    Ship<Character> s = createFn.apply(p);
-    String error = theBoard.tryAddShip(s);
-    if (error != null) {
-      throw new IOException(error);
+  public Coordinate readCoordinate(String prompt) throws IOException {
+    out.println(prompt);
+    String s = inputReader.readLine();
+    if (s == null) {
+      throw new IOException();
     }
-    out.println(view.displayMyOwnBoard());
+    return new Coordinate(s);
+  }
+
+  public void doOnePlacement(String shipName, Function<Placement, Ship<Character>> createFn) throws IOException {
+    // try {
+      Placement p = readPlacement("Player " + name + " where do you want to place a " + shipName + "?");
+      Ship<Character> s = createFn.apply(p);
+      String error = theBoard.tryAddShip(s);
+      if (error != null) {
+        throw new IOException(error);
+      }
+      out.println(view.displayMyOwnBoard());
+    // } catch (IllegalArgumentException ex) {
+    //   out.println(ex.getMessage());
+    //   out.println("Please place again!");
+    //   doOnePlacement(shipName, createFn);
+    // }
   }
 
   public void doPlacementPhase() throws IOException {
@@ -82,7 +97,29 @@ public class TextPlayer {
     }
   }
 
-  public boolean checkLost(){
+  public boolean checkLost() {
     return !theBoard.checkShipRemain();
+  }
+
+  public void playOneTurn(Board<Character> enemyBoard, BoardTextView enemyView, String enemyName) throws IOException {
+    // view.displayMyBoardWithEnemyNextToIt(enemyView, enemyName, enemyName)
+    String prompt = name + " Please choose a coordinate to attack!";
+    String myHeader = "Your ocean";
+    String enemyHeader = "Player " + enemyName + "'s ocean";
+    try {
+      out.println(view.displayMyBoardWithEnemyNextToIt(enemyView, myHeader, enemyHeader));
+      Coordinate c = readCoordinate(prompt);
+      Ship<Character> ship = enemyBoard.fireAt(c);
+      if (ship == null) {
+        out.println("You missed!");
+      } else {
+        out.println("You hit a " + ship.getName());
+      }
+
+    } catch (IllegalArgumentException ex) {
+      out.println(ex.getMessage());
+      out.println("Please attack again!");
+      playOneTurn(enemyBoard, enemyView, enemyName);
+    }
   }
 }

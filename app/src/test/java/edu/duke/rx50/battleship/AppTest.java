@@ -23,15 +23,20 @@ class AppTest {
   @Test
   @ResourceLock(value = Resources.SYSTEM_OUT, mode = ResourceAccessMode.READ_WRITE)
   void test_main() throws IOException {
+    test_helper("input.txt", "output.txt");
+    test_helper("input_A_win.txt", "output_A_win.txt");
+  }
+
+  void test_helper(String inputFile, String outputFile) throws IOException {
     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
     PrintStream out = new PrintStream(bytes, true);
     // get an InputStream for our input.txt file:
-    InputStream input = getClass().getClassLoader().getResourceAsStream("input.txt");
-    
+    InputStream input = getClass().getClassLoader().getResourceAsStream(inputFile);
+
     assertNotNull(input);
     // ask the ClassLaoder to find us a resource named "input.txt" and give us back
     // an InputStream for it.
-    InputStream expectedStream = getClass().getClassLoader().getResourceAsStream("output.txt");
+    InputStream expectedStream = getClass().getClassLoader().getResourceAsStream(outputFile);
     assertNotNull(expectedStream);
     // remember the current System.in and System.out:
     InputStream oldIn = System.in;

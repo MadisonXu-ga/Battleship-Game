@@ -14,6 +14,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class TextPlayerTest {
@@ -40,6 +41,12 @@ public class TextPlayerTest {
     assertThrows(IOException.class, () -> {
       player_error.readPlacement(prompt);
     });
+  }
+
+  @Test
+  void test_read_coordinate(){
+    TextPlayer player_error = createTextPlayer("A", 10, 20, "", System.out);
+    assertThrows(IOException.class, ()->{player_error.readCoordinate("???");});
   }
 
   @Test
@@ -82,7 +89,7 @@ public class TextPlayerTest {
   @Test
   public void test_doPlacementPhase() throws IOException {
     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-    InputStream input = getClass().getClassLoader().getResourceAsStream("input.txt");
+    InputStream input = getClass().getClassLoader().getResourceAsStream("input_place.txt");
     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
     PrintStream output = new PrintStream(bytes, true);
     Board<Character> b1 = new BattleShipBoard<Character>(10, 20, 'X');
@@ -94,7 +101,7 @@ public class TextPlayerTest {
     player1.doPlacementPhase();
     player2.doPlacementPhase();
 
-    InputStream expectedStream = getClass().getClassLoader().getResourceAsStream("output.txt");
+    InputStream expectedStream = getClass().getClassLoader().getResourceAsStream("output_place.txt");
 
     String expected = new String(expectedStream.readAllBytes());
     assertEquals(expected, bytes.toString());
