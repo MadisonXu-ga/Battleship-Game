@@ -68,11 +68,11 @@ public class BattleShipBoard<T> implements Board<T> {
   public T whatIsAtForSelf(Coordinate where) {
     return whatIsAt(where, true);
   }
-  
+
   /**
    * unhit ship: blank
    * hit ship: letter
-   * miss: X 
+   * miss: X
    */
   public T whatIsAtForEnemy(Coordinate where) {
     return whatIsAt(where, false);
@@ -84,7 +84,7 @@ public class BattleShipBoard<T> implements Board<T> {
         return s.getDisplayInfoAt(where, isSelf);
       }
     }
-    if(!isSelf && enemyMisses.contains(where)){
+    if (!isSelf && enemyMisses.contains(where)) {
       return missInfo;
     }
     return null;
@@ -105,5 +105,14 @@ public class BattleShipBoard<T> implements Board<T> {
     }
     enemyMisses.add(c);
     return null;
+  }
+
+  public boolean checkShipRemain() {
+    for (Ship<T> s : myShips) {
+      if (!s.isSunk()) {
+        return true;
+      }
+    }
+    return false;
   }
 }

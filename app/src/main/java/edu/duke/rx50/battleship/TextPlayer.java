@@ -82,4 +82,7 @@ public class TextPlayer {
     }
   }
 
+  public boolean checkLost(){
+    return !theBoard.checkShipRemain();
+  }
 }

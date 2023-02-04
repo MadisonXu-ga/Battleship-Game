@@ -1,7 +1,9 @@
 package edu.duke.rx50.battleship;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -35,7 +37,9 @@ public class TextPlayerTest {
 
     // error
     TextPlayer player_error = createTextPlayer("A", 10, 20, "", bytes);
-    assertThrows(IOException.class,()->{ player_error.readPlacement(prompt);});
+    assertThrows(IOException.class, () -> {
+      player_error.readPlacement(prompt);
+    });
   }
 
   @Test
@@ -94,5 +98,23 @@ public class TextPlayerTest {
 
     String expected = new String(expectedStream.readAllBytes());
     assertEquals(expected, bytes.toString());
+  }
+
+  @Test
+  public void test_checkLost() throws IOException {
+    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+    BufferedReader input = new BufferedReader(new StringReader("A0H\n"));
+    PrintStream output = new PrintStream(bytes, true);
+    Board<Character> b = new BattleShipBoard<Character>(4, 3, 'X');
+    V1ShipFactory shipFactory = new V1ShipFactory();
+    TextPlayer player = new TextPlayer("A", b, input, output, shipFactory);
+
+    player.doOnePlacement("Submarine", (ship) -> shipFactory.makeSubmarine(ship));
+
+    assertFalse(player.checkLost());
+    b.fireAt(new Coordinate("A0"));
+    assertFalse(player.checkLost());
+    b.fireAt(new Coordinate("A1"));
+    assertTrue(player.checkLost());
   }
 }
