@@ -42,11 +42,39 @@ public class BoardTextView {
   }
 
   public String displayMyOwnBoard() {
-    return displayAnyBoard((c)->toDisplay.whatIsAtForSelf(c));
+    return displayAnyBoard((c) -> toDisplay.whatIsAtForSelf(c));
   }
 
-  public String displayEnemyBoard(){
-    return displayAnyBoard((c)->toDisplay.whatIsAtForEnemy(c));
+  public String displayEnemyBoard() {
+    return displayAnyBoard((c) -> toDisplay.whatIsAtForEnemy(c));
+  }
+
+  public String displayMyBoardWithEnemyNextToIt(BoardTextView enemyView, String myHeader, String enemyHeader) {
+    String[] myLines = this.displayMyOwnBoard().split("\n");
+    String[] enemyLines = enemyView.displayEnemyBoard().split("\n");
+
+    StringBuilder ans = new StringBuilder("");
+    int spaceLength = 16; // ??????
+    int leftHeader = 5;
+
+    for (int i = 0; i < myLines.length; ++i) {
+      if (i == 0) {
+        ans.append(" ".repeat(leftHeader));
+        ans.append(myHeader);
+        ans.append(" ".repeat(spaceLength));
+        ans.append(enemyHeader);
+        ans.append("\n");
+      }
+      ans.append(myLines[i]);
+      if (i == 0 || i == myLines.length - 1) {
+        ans.append("  ");
+      }
+      ans.append(" ".repeat(spaceLength));
+      ans.append(enemyLines[i]);
+      ans.append("\n");
+    }
+
+    return ans.toString();
   }
 
   String makeHeader() {

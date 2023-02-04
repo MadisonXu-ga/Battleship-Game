@@ -101,4 +101,30 @@ public class BoardTextViewTest {
 
     assertEquals(enemyView_hit, view.displayEnemyBoard());
   }
+
+  @Test
+  public void test_displayMyBoardWithEnemyNextToIt(){
+    String expectedView =
+      "     Your ocean" + "                " + "Player B's ocean\n" +
+      "  0|1|2|3  " + "                " + "  0|1|2|3\n"+
+      "A  | | |d A" + "                " + "A X| | |  A\n" +
+      "B *|s| |d B" + "                " + "B s| | |  B\n" +
+      "C  | | |d C" + "                " + "C  | | |  C\n" +
+      "  0|1|2|3  " + "                " + "  0|1|2|3\n";
+
+    String myHeader = "Your ocean";
+    String enemyHeader = "Player B's ocean";
+
+    Board<Character> b = new BattleShipBoard<Character>(4, 3, 'X');
+    V1ShipFactory v = new V1ShipFactory();
+    BoardTextView view = new BoardTextView(b);
+
+    b.tryAddShip(v.makeSubmarine(new Placement("B0H")));
+    b.tryAddShip(v.makeDestroyer(new Placement("A3V")));
+    
+    b.fireAt(new Coordinate("B0"));
+    b.fireAt(new Coordinate("A0"));
+
+    assertEquals(expectedView, view.displayMyBoardWithEnemyNextToIt(view, myHeader, enemyHeader));
+  }
 }
