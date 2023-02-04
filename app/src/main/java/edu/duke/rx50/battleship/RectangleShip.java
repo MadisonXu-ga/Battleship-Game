@@ -21,16 +21,20 @@ public class RectangleShip<T> extends BasicShip<T> {
   /**
    * Constrcutor1
    */
-  public RectangleShip(String name, Coordinate upperLeft, int width, int height, ShipDisplayInfo<T> displayInfo) {
-    super(makeCoords(upperLeft, width, height), displayInfo);
+  public RectangleShip(String name, Coordinate upperLeft, int width, int height, ShipDisplayInfo<T> myDisplayInfo,
+      ShipDisplayInfo<T> enemyDisplayInfo) {
+    super(makeCoords(upperLeft, width, height), myDisplayInfo, enemyDisplayInfo);
     this.name = name;
   }
 
   /**
    * convience constructors
+   * for my own view diplay: data if not hit; onHit if hit
+   * for the enemy view: nothing if not hit; data if hit
    */
   public RectangleShip(String name, Coordinate upperLeft, int width, int height, T data, T onHit) {
-    this(name, upperLeft, width, height, new SimpleShipDisplayInfo<T>(data, onHit));
+    this(name, upperLeft, width, height, new SimpleShipDisplayInfo<T>(data, onHit),
+        new SimpleShipDisplayInfo<T>(null, data));
   }
 
   /**

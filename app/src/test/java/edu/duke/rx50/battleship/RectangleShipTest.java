@@ -50,19 +50,21 @@ public class RectangleShipTest {
   @Test
   public void test_getDisplayInfoAt() {
     RectangleShip<Character> r = new RectangleShip<Character>("submarine", new Coordinate(1, 2), 1, 3, 's', '*');
-    assertEquals(r.getDisplayInfoAt(new Coordinate(1, 2)), 's');
+    assertEquals(r.getDisplayInfoAt(new Coordinate(1, 2), true), 's');
+    assertEquals(r.getDisplayInfoAt(new Coordinate(1, 2), false), null);
     r.recordHitAt(new Coordinate(1, 2));
-    assertEquals(r.getDisplayInfoAt(new Coordinate(1, 2)), '*');
+    assertEquals(r.getDisplayInfoAt(new Coordinate(1, 2), true), '*');
+    assertEquals(r.getDisplayInfoAt(new Coordinate(1, 2), false), 's');
     r.recordHitAt(new Coordinate(2, 2));
-    assertEquals(r.getDisplayInfoAt(new Coordinate(2, 2)), '*');
-    assertThrows(IllegalArgumentException.class, () -> r.getDisplayInfoAt(new Coordinate(3, 3)));
+    assertEquals(r.getDisplayInfoAt(new Coordinate(2, 2), true), '*');
+    assertThrows(IllegalArgumentException.class, () -> r.getDisplayInfoAt(new Coordinate(3, 3), true));
   }
 
   @Test
   public void test_getCoordinates() {
     RectangleShip<Character> r = new RectangleShip<Character>("submarine", new Coordinate(1, 2), 1, 3, 's', '*');
     Iterable<Coordinate> s = r.getCoordinates();
-    for(Coordinate c: s){
+    for (Coordinate c : s) {
       assertTrue(r.occupiesCoordinates(c));
     }
   }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class BoardTextViewTest {
   private void emptyBoardHelper(int w, int h, String expectedHeader, String expectedBody) {
-    Board<Character> b1 = new BattleShipBoard<Character>(w, h);
+    Board<Character> b1 = new BattleShipBoard<Character>(w, h, 'X');
     BoardTextView view = new BoardTextView(b1);
     assertEquals(expectedHeader, view.makeHeader());
     String expected = expectedHeader + expectedBody + expectedHeader;
@@ -23,8 +23,8 @@ public class BoardTextViewTest {
 
   @Test
   public void test_invalid_board_size() {
-    Board<Character> wideBoard = new BattleShipBoard<Character>(11, 20);
-    Board<Character> tallBoard = new BattleShipBoard<Character>(10, 27);
+    Board<Character> wideBoard = new BattleShipBoard<Character>(11, 20, 'X');
+    Board<Character> tallBoard = new BattleShipBoard<Character>(10, 27, 'X');
     assertThrows(IllegalArgumentException.class, () -> new BoardTextView(wideBoard));
     assertThrows(IllegalArgumentException.class, () -> new BoardTextView(tallBoard));
   }
@@ -55,7 +55,7 @@ public class BoardTextViewTest {
         "B  | |s|  B\n" +
         "C  | | |  C\n";
 
-    Board<Character> b1 = new BattleShipBoard<Character>(4, 3);
+    Board<Character> b1 = new BattleShipBoard<Character>(4, 3, 'X');
     b1.tryAddShip(new RectangleShip<Character>(new Coordinate(1, 2), 's', '*'));
 
     BoardTextView view = new BoardTextView(b1);
@@ -63,5 +63,42 @@ public class BoardTextViewTest {
     assertEquals(expectedHeader, view.makeHeader());
     String expected = expectedHeader + expectedBody + expectedHeader;
     assertEquals(expected, view.displayMyOwnBoard());
+  }
+
+  @Test
+  public void test_displayEnemyBoard(){
+    String myView =
+      "  0|1|2|3\n" +
+      "A  | | |d A\n" +
+      "B s|s| |d B\n" +
+      "C  | | |d C\n" +
+      "  0|1|2|3\n";
+    Board<Character> b = new BattleShipBoard<Character>(4, 3, 'X');
+    V1ShipFactory v = new V1ShipFactory();
+    BoardTextView view = new BoardTextView(b);
+
+    b.tryAddShip(v.makeSubmarine(new Placement("B0H")));
+    assertNull(b.tryAddShip(v.makeDestroyer(new Placement("A3V"))));
+    assertEquals(myView, view.displayMyOwnBoard());
+
+    String enemyView_unhit =
+      "  0|1|2|3\n" +
+      "A  | | |  A\n" +
+      "B  | | |  B\n" +
+      "C  | | |  C\n" +
+      "  0|1|2|3\n";
+
+    assertEquals(enemyView_unhit, view.displayEnemyBoard());
+    b.fireAt(new Coordinate("B0"));
+    b.fireAt(new Coordinate("A0"));
+
+    String enemyView_hit =
+      "  0|1|2|3\n" +
+      "A X| | |  A\n" +
+      "B s| | |  B\n" +
+      "C  | | |  C\n" +
+      "  0|1|2|3\n";
+
+    assertEquals(enemyView_hit, view.displayEnemyBoard());
   }
 }

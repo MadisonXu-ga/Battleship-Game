@@ -1,5 +1,7 @@
 package edu.duke.rx50.battleship;
 
+import java.util.function.Function;
+
 /**
  * This class handles textual display of
  * a Board (i.e., converting it to a string to show
@@ -29,14 +31,22 @@ public class BoardTextView {
     }
   }
 
-  public String displayMyOwnBoard() {
+  public String displayAnyBoard(Function<Coordinate, Character> getSquareFn) {
     String header = makeHeader();
     String body = "";
     for (int row = 0; row < toDisplay.getHeight(); ++row) {
-      String s = makeBody(row);
+      String s = makeBody(row, getSquareFn);
       body += s;
     }
     return header + body + header;
+  }
+
+  public String displayMyOwnBoard() {
+    return displayAnyBoard((c)->toDisplay.whatIsAtForSelf(c));
+  }
+
+  public String displayEnemyBoard(){
+    return displayAnyBoard((c)->toDisplay.whatIsAtForEnemy(c));
   }
 
   String makeHeader() {
@@ -51,18 +61,17 @@ public class BoardTextView {
     return ans.toString();
   }
 
-  String makeBody(int row) {
+  String makeBody(int row, Function<Coordinate, Character> getSquareFn) {
     StringBuilder ans = new StringBuilder("");
     String sep = " ";
     char c = (char) ('A' + row);
     ans.append(c);
     ans.append(" ");
     for (int column = 0; column < toDisplay.getWidth(); ++column) {
-      // question: cast here?? other method???
-      if (toDisplay.whatIsAt(new Coordinate(row, column)) == null) {
+      if (getSquareFn.apply(new Coordinate(row, column)) == null) {
         ans.append(" ");
       } else {
-        ans.append(toDisplay.whatIsAt(new Coordinate(row, column)));
+        ans.append(getSquareFn.apply(new Coordinate(row, column)));
       }
       if (column != toDisplay.getWidth() - 1) {
         ans.append("|");

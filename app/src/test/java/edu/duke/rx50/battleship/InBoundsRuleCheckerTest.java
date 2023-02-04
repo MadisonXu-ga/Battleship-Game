@@ -8,7 +8,7 @@ public class InBoundsRuleCheckerTest {
   @Test
   public void test_checkMyRule() {
     V1ShipFactory v = new V1ShipFactory();
-    Board<Character> b = new BattleShipBoard<Character>(8, 7, new InBoundsRuleChecker<Character>(null));
+    Board<Character> b = new BattleShipBoard<Character>(8, 7, 'X', new InBoundsRuleChecker<Character>(null));
     PlacementRuleChecker<Character> checker = new InBoundsRuleChecker<Character>(null);
     // valid ship
     Ship<Character> s1 = v.makeSubmarine(new Placement("A0H"));
