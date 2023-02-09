@@ -54,6 +54,10 @@ public abstract class BasicShip<T> implements Ship<T> {
     return enemyDisplayInfo.getInfo(where, wasHitAt(where));
   }
 
+  /*
+   * check if a coordinate is in ship
+   * else throw exception
+   */
   protected void checkCoordinateInThisShip(Coordinate c) {
     if (!occupiesCoordinates(c)) {
       throw new IllegalArgumentException("Coordinate is not in the ship!");
@@ -61,6 +65,9 @@ public abstract class BasicShip<T> implements Ship<T> {
   }
 
   @Override
+  /*
+   * return all the coordinates of a ship
+   */
   public Iterable<Coordinate> getCoordinates() {
     return myPieces.keySet();
   }

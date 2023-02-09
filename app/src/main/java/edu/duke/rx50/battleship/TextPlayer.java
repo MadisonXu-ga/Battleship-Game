@@ -51,7 +51,7 @@ public class TextPlayer {
   /**
    * read placement and deal with it
    */
-  public Placement readPlacement(String prompt) throws IOException {
+  public Placement readPlacement(String prompt) throws IOException, IllegalArgumentException {
     out.println(prompt);
     String s = inputReader.readLine();
     if (s == null) {
@@ -60,7 +60,7 @@ public class TextPlayer {
     return new Placement(s);
   }
 
-  public Coordinate readCoordinate(String prompt) throws IOException {
+  public Coordinate readCoordinate(String prompt) throws IOException, IllegalArgumentException {
     out.println(prompt);
     String s = inputReader.readLine();
     if (s == null) {
@@ -70,7 +70,7 @@ public class TextPlayer {
   }
 
   public void doOnePlacement(String shipName, Function<Placement, Ship<Character>> createFn) throws IOException {
-    // try {
+    try {
       Placement p = readPlacement("Player " + name + " where do you want to place a " + shipName + "?");
       Ship<Character> s = createFn.apply(p);
       String error = theBoard.tryAddShip(s);
@@ -78,11 +78,11 @@ public class TextPlayer {
         throw new IOException(error);
       }
       out.println(view.displayMyOwnBoard());
-    // } catch (IllegalArgumentException ex) {
-    //   out.println(ex.getMessage());
-    //   out.println("Please place again!");
-    //   doOnePlacement(shipName, createFn);
-    // }
+    } catch (IllegalArgumentException ex) {
+      out.println(ex.getMessage());
+      out.println("Please place again!");
+      doOnePlacement(shipName, createFn);
+    }
   }
 
   public void doPlacementPhase() throws IOException {

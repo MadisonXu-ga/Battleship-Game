@@ -1,6 +1,6 @@
 package edu.duke.rx50.battleship;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,15 +17,16 @@ public class InBoundsRuleCheckerTest {
     assertEquals(checker.checkPlacement(s2, b), null);
 
     // invalid ship
-    Ship<Character> s3 = v.makeSubmarine(new Placement("A0H"));
+    Ship<Character> s3 = v.makeSubmarine(new Placement(new Coordinate(-1, 0), 'V'));
     Ship<Character> s4 = v.makeSubmarine(new Placement("Z0H"));
-    Ship<Character> s5 = v.makeSubmarine(new Placement("A0H"));
+    Ship<Character> s5 = v.makeSubmarine(new Placement(new Coordinate(0, -1), 'V'));
     Ship<Character> s6 = v.makeSubmarine(new Placement("A8H"));
     Ship<Character> s7 = v.makeSubmarine(new Placement("A9H"));
-    // assertFalse(checker.checkPlacement(s3, b));
+
+    assertEquals(checker.checkPlacement(s3, b), "That placement is invalid: the ship goes off the top of the board.");
     assertEquals(checker.checkPlacement(s4, b),
         "That placement is invalid: the ship goes off the bottom of the board.");
-    // assertFalse(checker.checkPlacement(s5, b));
+    assertEquals(checker.checkPlacement(s5, b), "That placement is invalid: the ship goes off the left of the board.");
     assertEquals(checker.checkPlacement(s6, b), "That placement is invalid: the ship goes off the right of the board.");
     assertEquals(checker.checkPlacement(s7, b), "That placement is invalid: the ship goes off the right of the board.");
   }

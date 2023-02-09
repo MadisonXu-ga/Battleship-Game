@@ -46,7 +46,7 @@ public class TextPlayerTest {
   @Test
   void test_read_coordinate(){
     TextPlayer player_error = createTextPlayer("A", 10, 20, "", System.out);
-    assertThrows(IOException.class, ()->{player_error.readCoordinate("???");});
+    assertThrows(IOException.class, ()->{player_error.readCoordinate("");});
   }
 
   @Test

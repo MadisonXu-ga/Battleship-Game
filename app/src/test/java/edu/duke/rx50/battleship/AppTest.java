@@ -23,8 +23,10 @@ class AppTest {
   @Test
   @ResourceLock(value = Resources.SYSTEM_OUT, mode = ResourceAccessMode.READ_WRITE)
   void test_main() throws IOException {
-    test_helper("input.txt", "output.txt");
-    test_helper("input_A_win.txt", "output_A_win.txt");
+    // test_helper("input.txt", "output.txt");
+    // test_helper("input_A_win.txt", "output_A_win.txt");
+    test_helper("input_v2_ship.txt", "output_v2_ship.txt");
+    test_helper("input_v2_ship2.txt", "output_v2_ship2.txt");
   }
 
   void test_helper(String inputFile, String outputFile) throws IOException {

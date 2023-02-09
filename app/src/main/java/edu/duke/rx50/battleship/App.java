@@ -21,7 +21,7 @@ public class App {
     player2.doPlacementPhase();
   }
 
-  public void doAttackingPhase() throws IOException{
+  public void doAttackingPhase() throws IOException {
     while (true) {
       player1.playOneTurn(player2.theBoard, player2.view, player2.name);
       if (player2.checkLost()) {
@@ -41,7 +41,7 @@ public class App {
     Board<Character> b2 = new BattleShipBoard<Character>(10, 20, 'X');
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
-    V1ShipFactory factory = new V1ShipFactory();
+    V2ShipFactory factory = new V2ShipFactory();
     TextPlayer player1 = new TextPlayer("A", b1, input, System.out, factory);
     TextPlayer player2 = new TextPlayer("B", b2, input, System.out, factory);
 
