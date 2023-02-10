@@ -1,3 +1,9 @@
+Please choose the type of Player A
+1. Human
+2. Computer
+Please choose the type of Player B
+1. Human
+2. Computer
   0|1|2|3|4|5|6|7|8|9
 A  | | | | | | | | |  A
 B  | | | | | | | | |  B

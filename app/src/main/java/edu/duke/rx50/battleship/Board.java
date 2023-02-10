@@ -8,4 +8,6 @@ public interface Board<T> {
   public T whatIsAtForEnemy(Coordinate where);
   public Ship<T> fireAt(Coordinate c);
   public boolean checkShipRemain();
+  public String findShipName(Coordinate c);
+  public String relocateShip(Coordinate origin, Placement target, Ship<T> newShip);
 }

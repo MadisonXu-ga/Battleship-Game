@@ -56,7 +56,7 @@ public class BoardTextViewTest {
         "C  | | |  C\n";
 
     Board<Character> b1 = new BattleShipBoard<Character>(4, 3, 'X');
-    b1.tryAddShip(new RectangleShip<Character>(new Coordinate(1, 2), 's', '*'));
+    b1.tryAddShip(new RectangleShip<Character>(new Coordinate(1, 2), 's', '*', 'H'));
 
     BoardTextView view = new BoardTextView(b1);
 

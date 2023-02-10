@@ -89,7 +89,19 @@ public class RhodeShipTest {
   @Test
   public void test_getName() {
     RhodeShip<Character> r = makeShip(2, 5, 'U');
-    assertEquals(r.getName(), "carrier");
+    assertEquals("carrier", r.getName());
+  }
+
+  @Test
+  public void test_getOrientation(){
+    RhodeShip<Character> r = makeShip(2, 5, 'U');
+    assertEquals('U', r.getOrientation());
+  }
+
+  @Test
+  public void test_getUpperLeft(){
+    RhodeShip<Character> r = makeShip(2, 5, 'U');
+    assertEquals(new Coordinate(0,0), r.getUpperLeft());
   }
 
 }

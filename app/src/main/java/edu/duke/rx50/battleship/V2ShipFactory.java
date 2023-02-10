@@ -36,9 +36,9 @@ public class V2ShipFactory implements AbstractShipFactory<Character> {
             throw new IllegalArgumentException("Orientation is invalid!");
         }
         if (where.getOrientation() == 'H') {
-            return new RectangleShip<Character>(name, where.getWhere(), h, w, letter, onHit);
+            return new RectangleShip<Character>(name, where.getWhere(), h, w, letter, onHit, where.getOrientation());
         }
-        return new RectangleShip<Character>(name, where.getWhere(), w, h, letter, onHit);
+        return new RectangleShip<Character>(name, where.getWhere(), w, h, letter, onHit, where.getOrientation());
     }
 
     /*

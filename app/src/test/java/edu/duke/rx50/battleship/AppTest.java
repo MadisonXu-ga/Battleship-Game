@@ -20,13 +20,18 @@ import org.junit.jupiter.api.parallel.Resources;
 
 class AppTest {
   // @ResourceLock to ensure proper serialization of the tests.
+  // @Disabled
   @Test
   @ResourceLock(value = Resources.SYSTEM_OUT, mode = ResourceAccessMode.READ_WRITE)
   void test_main() throws IOException {
     // test_helper("input.txt", "output.txt");
     // test_helper("input_A_win.txt", "output_A_win.txt");
-    test_helper("input_v2_ship.txt", "output_v2_ship.txt");
-    test_helper("input_v2_ship2.txt", "output_v2_ship2.txt");
+    // test_helper("input_v2_ship.txt", "output_v2_ship.txt");
+    // test_helper("input_v2_ship2.txt", "output_v2_ship2.txt");
+    test_helper("input_new_move.txt", "output_new_move.txt");
+    test_helper("input_cVSc.txt", "output_cVSc.txt");
+    test_helper("input_cVSh.txt", "output_cVSh.txt");
+    test_helper("input_error_case.txt", "output_error_case.txt");
   }
 
   void test_helper(String inputFile, String outputFile) throws IOException {

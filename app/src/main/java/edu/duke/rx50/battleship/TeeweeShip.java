@@ -4,6 +4,8 @@ import java.util.HashSet;
 
 public class TeeweeShip<T> extends BasicShip<T> {
     final String name;
+    char orientation;
+    Coordinate upperLeft;
 
     static HashSet<Coordinate> makeRectangleCoords(Coordinate upperLeft, int width, int height) {
         HashSet<Coordinate> s = new HashSet<Coordinate>();
@@ -44,6 +46,8 @@ public class TeeweeShip<T> extends BasicShip<T> {
             ShipDisplayInfo<T> myDisplayInfo, ShipDisplayInfo<T> enemyDisplayInfo) {
         super(makeCoords(upperLeft, width, height, orientation), myDisplayInfo, enemyDisplayInfo);
         this.name = name;
+        this.orientation = orientation;
+        this.upperLeft = upperLeft;
     }
 
     public TeeweeShip(String name, Coordinate uppperLeft, int width, int height, char orientation, T data, T onHit) {
@@ -54,5 +58,15 @@ public class TeeweeShip<T> extends BasicShip<T> {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public char getOrientation() {
+        return this.orientation;
+    }
+
+    @Override
+    public Coordinate getUpperLeft() {
+        return this.upperLeft;
     }
 }

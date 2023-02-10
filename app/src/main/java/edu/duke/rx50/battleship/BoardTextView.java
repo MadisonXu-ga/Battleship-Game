@@ -91,7 +91,6 @@ public class BoardTextView {
 
   String makeBody(int row, Function<Coordinate, Character> getSquareFn) {
     StringBuilder ans = new StringBuilder("");
-    String sep = " ";
     char c = (char) ('A' + row);
     ans.append(c);
     ans.append(" ");
