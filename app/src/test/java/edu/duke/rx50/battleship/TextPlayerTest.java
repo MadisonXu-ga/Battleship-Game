@@ -14,7 +14,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class TextPlayerTest {
@@ -123,5 +122,13 @@ public class TextPlayerTest {
     assertFalse(player.checkLost());
     b.fireAt(new Coordinate("A1"));
     assertTrue(player.checkLost());
+  }
+
+  @Test
+  public void test_selectAction_error(){
+    TextPlayer player_error = createTextPlayer("A", 10, 20, "", System.out);
+    Board<Character> b = new BattleShipBoard<Character>(10, 20, 'X');
+    BoardTextView view = new BoardTextView(b);
+    assertThrows(IOException.class, ()->player_error.selectAction(b, view, "B"));
   }
 }

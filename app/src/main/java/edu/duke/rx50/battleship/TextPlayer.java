@@ -104,6 +104,9 @@ public class TextPlayer {
     }
   }
 
+  /*
+   * check if the player has lost
+   */
   public boolean checkLost() {
     return !theBoard.checkShipRemain();
   }
@@ -112,7 +115,6 @@ public class TextPlayer {
    * option 1 Fire at a ship
    */
   public void playOneTurn(Board<Character> enemyBoard, BoardTextView enemyView, String enemyName) throws IOException {
-    // view.displayMyBoardWithEnemyNextToIt(enemyView, enemyName, enemyName)
     String prompt = name + " Please choose a coordinate to attack!";
     String myHeader = "Your ocean";
     String enemyHeader = "Player " + enemyName + "'s ocean";
@@ -136,7 +138,6 @@ public class TextPlayer {
   /*
    * option 2 Move ship to another place
    */
-  // error handling???????
   public void moveShip() throws IOException {
     String prompt_select = "Which ship do you want to select?";
     String prompt_change = "Where do you want to place it?";
@@ -159,27 +160,8 @@ public class TextPlayer {
     String prompt = "Choose a center coordinate to scan";
     try {
       Coordinate center = readCoordinate(prompt);
-
-      HashSet<Coordinate> scanAreaCoords = new HashSet<>();
-
-      // draw the area
-      int k = 0;
-      for (int r = -3; r <= 3; ++r) {
-        for (int c = (-k); c <= k; ++c) {
-          int scanR = center.getRow() + r;
-          int scanC = center.getColumn() + c;
-          if (scanR < 0 || scanR >= enemyBoard.getHeight() || scanC < 0 || scanC >= enemyBoard.getWidth()) {
-            continue;
-          }
-          scanAreaCoords.add(new Coordinate(scanR, scanC));
-        }
-        if (r >= 0) {
-          --k;
-        } else {
-          ++k;
-        }
-      }
-
+      HashSet<Coordinate> scanAreaCoords = findCoordsInArea(center, enemyBoard);
+      ;
       int submarineNum = 0, destroyerNum = 0, battleshipNum = 0, carrierNum = 0;
       for (Coordinate c : scanAreaCoords) {
         String shipName = enemyBoard.findShipName(c);
@@ -214,6 +196,31 @@ public class TextPlayer {
   }
 
   /*
+   * Helper function, to find coordinates in specific shape of scan area
+   */
+  protected HashSet<Coordinate> findCoordsInArea(Coordinate center, Board<Character> enemyBoard) {
+    // draw the area
+    HashSet<Coordinate> scanAreaCoords = new HashSet<>();
+    int k = 0;
+    for (int r = -3; r <= 3; ++r) {
+      for (int c = (-k); c <= k; ++c) {
+        int scanR = center.getRow() + r;
+        int scanC = center.getColumn() + c;
+        if (scanR < 0 || scanR >= enemyBoard.getHeight() || scanC < 0 || scanC >= enemyBoard.getWidth()) {
+          continue;
+        }
+        scanAreaCoords.add(new Coordinate(scanR, scanC));
+      }
+      if (r >= 0) {
+        --k;
+      } else {
+        ++k;
+      }
+    }
+    return scanAreaCoords;
+  }
+
+  /*
    * Provide 3 options for player
    */
   public void selectAction(Board<Character> enemyBoard, BoardTextView enemyView, String enemyName) throws IOException {
@@ -225,14 +232,11 @@ public class TextPlayer {
     if (sonarScanChances > 0) {
       out.println("S Sonar scan (" + sonarScanChances + " remaining)");
     }
-
-    // abstract this as a function!!!
     try {
       String s = inputReader.readLine();
-      // if (s == null) {
-      //   throw new IOException();
-      // }
-
+      if (s == null) {
+      throw new IOException();
+      }
       if (s.equalsIgnoreCase("F")) {
         playOneTurn(enemyBoard, enemyView, enemyName);
       } else if (s.equalsIgnoreCase("M") && moveShipChances > 0) {

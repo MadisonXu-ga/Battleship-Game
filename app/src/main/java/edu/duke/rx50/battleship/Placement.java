@@ -47,8 +47,6 @@ public class Placement {
 
   @Override
   public String toString() {
-    // return "Coordinate: " + where.toString() + "\n" + "Orientation: " +
-    // orientation;
     return "(" + where.toString() + ", " + orientation + ")";
   }
 

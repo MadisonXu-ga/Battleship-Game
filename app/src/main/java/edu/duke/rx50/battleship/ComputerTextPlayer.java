@@ -16,14 +16,12 @@ public class ComputerTextPlayer extends TextPlayer{
     @Override
     public Coordinate readCoordinate(String prompt) throws IOException, IllegalArgumentException {
         String s = inputReader.readLine();
-        // out.println("attack coordinate for computer!!!!!! "+name+"  "+s);
         return new Coordinate(s);
     }
 
     @Override
     public Placement readPlacement(String prompt) throws IOException, IllegalArgumentException {
         String s = inputReader.readLine();
-        // out.println("place coordinate for computer!!!!!! "+name+"  "+s);
         return new Placement(s);
     }
 

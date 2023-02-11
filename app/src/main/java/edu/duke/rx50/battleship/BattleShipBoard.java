@@ -12,7 +12,6 @@ public class BattleShipBoard<T> implements Board<T> {
   private final PlacementRuleChecker<T> placementChecker;
   HashSet<Coordinate> enemyMisses;
 
-  // HashMap<Coordinate, T> fireCoordsStatusForSelf;
   HashMap<Coordinate, T> fireCoordsStatusForEnemy;
 
   final T missInfo;
@@ -47,8 +46,6 @@ public class BattleShipBoard<T> implements Board<T> {
     this.placementChecker = placementChecker;
     this.enemyMisses = new HashSet<Coordinate>();
     this.missInfo = missInfo;
-
-    // this.fireCoordsStatusForSelf = new HashMap<>();
     this.fireCoordsStatusForEnemy = new HashMap<>();
   }
 
@@ -87,16 +84,6 @@ public class BattleShipBoard<T> implements Board<T> {
   }
 
   protected T whatIsAt(Coordinate where, boolean isSelf) {
-    // Ship display info
-    // for (Ship<T> s : myShips) {
-    // if (s.occupiesCoordinates(where)) {
-    // return s.getDisplayInfoAt(where, isSelf);
-    // }
-    // }
-    // if (!isSelf && enemyMisses.contains(where)) {
-    // return missInfo;
-    // }
-
     // Board display info
     if (isSelf) {
       for (Ship<T> s : myShips) {
@@ -121,7 +108,6 @@ public class BattleShipBoard<T> implements Board<T> {
     for (Ship<T> s : myShips) {
       if (s.occupiesCoordinates(c)) {
         s.recordHitAt(c);
-        // fireCoordsStatusForSelf.put(c, s.getDisplayInfoAt(c, true));
         fireCoordsStatusForEnemy.put(c, s.getDisplayInfoAt(c, false));
         return s;
       }
@@ -155,6 +141,9 @@ public class BattleShipBoard<T> implements Board<T> {
     return null;
   }
 
+  /*
+   * return the name of the ship where c locates in
+   */
   public String findShipName(Coordinate c) {
     if (findShip(c) != null) {
       return findShip(c).getName();
@@ -162,6 +151,9 @@ public class BattleShipBoard<T> implements Board<T> {
     return null;
   }
 
+  /*
+   * rotate and move ship
+   */
   protected String relocateShipHelper(char orien_tar, char orien_ori, Placement target, Ship<T> newShip, Ship<T> s) {
     // can abstract calculate dist as a function
     ArrayList<Character> rotations = new ArrayList<>(Arrays.asList('U', 'R', 'D', 'L'));
@@ -237,6 +229,9 @@ public class BattleShipBoard<T> implements Board<T> {
     return relocateShipHelper(orien_tar, orien_ori, target, newShip, s);
   }
 
+  /*
+   * get hit coordinates of a ship
+   */
   protected ArrayList<Coordinate> getHitPieces(Ship<T> s) {
     // return a new one!!(?)
     ArrayList<Coordinate> hitPieces = new ArrayList<>();
@@ -248,6 +243,9 @@ public class BattleShipBoard<T> implements Board<T> {
     return hitPieces;
   }
 
+  /*
+   * find the max diff in row direction
+   */
   protected int findDeltaR(Ship<T> s) {
     int deltaR = 0;
     for (Coordinate c1 : s.getCoordinates()) {
@@ -260,6 +258,9 @@ public class BattleShipBoard<T> implements Board<T> {
     return deltaR;
   }
 
+  /*
+   * find the max diff in column direction
+   */
   protected int findDeltaC(Ship<T> s) {
     int deltaC = 0;
     for (Coordinate c1 : s.getCoordinates()) {
